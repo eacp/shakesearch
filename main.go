@@ -4,15 +4,15 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"index/suffixarray"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"os"
+
+	"pulley.com/shakesearch/search"
 )
 
 func main() {
-	searcher := Searcher{}
+	searcher := search.Searcher{}
 	err := searcher.Load("completeworks.txt")
 	if err != nil {
 		log.Fatal(err)
@@ -35,12 +35,7 @@ func main() {
 	}
 }
 
-type Searcher struct {
-	CompleteWorks string
-	SuffixArray   *suffixarray.Index
-}
-
-func handleSearch(searcher Searcher) func(w http.ResponseWriter, r *http.Request) {
+func handleSearch(searcher search.Searcher) func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		query, ok := r.URL.Query()["q"]
 		if !ok || len(query[0]) < 1 {
@@ -60,23 +55,4 @@ func handleSearch(searcher Searcher) func(w http.ResponseWriter, r *http.Request
 		w.Header().Set("Content-Type", "application/json")
 		w.Write(buf.Bytes())
 	}
-}
-
-func (s *Searcher) Load(filename string) error {
-	dat, err := ioutil.ReadFile(filename)
-	if err != nil {
-		return fmt.Errorf("Load: %w", err)
-	}
-	s.CompleteWorks = string(dat)
-	s.SuffixArray = suffixarray.New(dat)
-	return nil
-}
-
-func (s *Searcher) Search(query string) []string {
-	idxs := s.SuffixArray.Lookup([]byte(query), -1)
-	results := []string{}
-	for _, idx := range idxs {
-		results = append(results, s.CompleteWorks[idx-250:idx+250])
-	}
-	return results
 }
