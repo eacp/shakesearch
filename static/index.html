@@ -1,26 +1,85 @@
+
 <!doctype html>
-<html class="no-js" lang="">
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shakesearch</title>
 
-<head>
-  <meta charset="utf-8">
-  <title>ShakeSearch</title>
-  <meta name="theme-color" content="#fafafa">
-</head>
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
-<body>
-    <p>
-        <form id="form">
-            <label for="query">Query</label>
-            <input type="text" id="query" name="query">
-            <button type="submit">Search</button>
-        </form>
+  </head>
+  <body>
+
+<main class="container">
+
+  <br>
+
+    <nav class="nav nav-pills nav-fill">
+      <a class="nav-link active" aria-current="page" href="/">Home</a>
+      <a class="nav-link" href="about.html">About</a>
+      <a class="nav-link" href="https://github.com/eacp/shakesearch" target="blank">Source</a>
+    </nav>
+
+    
+
+    <br>
+
+  <div class="bg-success p-5 rounded text-white">
+    <h1>ShakeSearch</h1>
+    <p class="lead">
+      Select a work and write a search term.
+      More works can be added using the <code>identifyWorks</code> method
     </p>
-    <p>
-        <table id="table">
-          <tbody id="table-body"></tbody>
-        </table>
-    </p>
+
+    <form id="form">
+      <select class="form-select" aria-label="Default select example" id="work" name="work">
+        <option selected value="all">Search in all works</option>
+        <option value="sonnets">THE SONNETS</option>
+        <option value="alls-well">ALL’S WELL THAT ENDS WELL</option>
+        <option value="antony-and-cleopatra">
+          THE TRAGEDY OF ANTONY AND CLEOPATRA
+        </option>
+        <option value="as-you-like-it">AS YOU LIKE IT</option>
+        <option value="the-comedy-of-errors">THE COMEDY OF ERRORS</option>
+        <option value="coriolanus">THE TRAGEDY OF CORIOLANUS</option>
+        <option value="cymbeline">
+          CYMBELINE
+        </option>
+        <option value="hamlet">THE TRAGEDY OF HAMLET, PRINCE OF DENMARK</option>
+        <option value="henry-iv-1">THE FIRST PART OF KING HENRY THE FOURTH</option>
+        <option value="henry-iv-2">THE SECOND PART OF KING HENRY THE FOURTH</option>
+        <option value="henry-v">
+          THE LIFE OF KING HENRY THE FIFTH
+        </option>
+        <option value="henry-vi-1">THE FIRST PART OF HENRY THE SIXTH</option>
+        <option value="macbeth">THE TRAGEDY OF MACBETH</option>
+        <option value="romeo-and-juliet">THE TRAGEDY OF ROMEO AND JULIET</option>
+      </select>
+
+      <br>
+
+      <div class="mb-3">
+        <label for="query" class="form-label">Email address</label>
+        <input type="text" class="form-control" id="query" name="query" placeholder="Hamlet">
+      </div>
+  
+      <button class="btn btn-lg btn-primary" type="submit">View navbar docs &raquo;</button>
+    </form>
+  </div>
+
+  <br>
+
+  <table class="table table-striped">
+    <tbody id="table-body"></tbody>
+  </table>
+</main>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
   <script src="app.js"></script>
-</body>
-
+      
+  </body>
 </html>
