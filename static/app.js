@@ -4,7 +4,7 @@ const Controller = {
     const form = document.getElementById("form");
     const data = Object.fromEntries(new FormData(form));
     const req = `/search?q=${data.query}&work=${data.work}`;
-    alert(req);
+    
     const response = fetch(req)
     .then((response) => {
       response.json().then((results) => {
